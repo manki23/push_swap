@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 16:24:06 by manki             #+#    #+#             */
-/*   Updated: 2019/08/01 17:20:35 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/02 13:23:38 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct		s_conv
 
 typedef struct		s_list
 {
-	char			*content;
+	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
@@ -116,8 +116,8 @@ char				*ft_dbl_to_str(t_define var);
 
 char				*ft_get_fvalue(t_option opt, char f_str[], t_define var);
 
-t_list				*ft_lstnew(char *content, size_t content_size);
-void				ft_lsadd(t_list **list, char *content, size_t c_size);
+t_list				*ft_lstnew(void const *content, size_t content_size);
+void				ft_lsadd(t_list **list, void const *content, size_t c_size);
 int					ft_lstlen(t_list *list);
 size_t				ft_lst_content_size(t_list *list);
 size_t				ft_lstprint(t_list list[]);
@@ -182,8 +182,8 @@ int					get_next_line(const int fd, char **line);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-void				ft_list_push_front(t_list **l, char *c, size_t c_size);
-void				ft_list_push_back(t_list **l, char *c, size_t c_size);
+void				ft_list_push_front(t_list **l, void const *c, size_t c_size);
+void				ft_list_push_back(t_list **l, void const *c, size_t c_size);
 
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strdup(const char *s1);
@@ -217,6 +217,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const*s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+long long			ft_atoll(const char *str);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);
 void				ft_putchar_fd(char c, int fd);
@@ -252,6 +253,7 @@ void				ft_putnbr_base(int nbr, char *base);
 int					ft_sqrt(int nb);
 int					ft_abs(int nb);
 int					ft_isprime(unsigned int nb);
-void				t_strmap(char const *s, char (*f)(char));
+char				*ft_strmap(char const *s, char (*f)(char));
+t_byte				ft_error(char *str, int fd);
 
 #endif

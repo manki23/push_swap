@@ -6,18 +6,16 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:32:07 by manki             #+#    #+#             */
-/*   Updated: 2019/08/01 16:47:18 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/02 12:15:22 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/mylibft.h"
 
-t_list		*ft_lstnew(char *content, size_t content_size)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list	*fresh;
-	char	c;
 
-	c = content[0];
 	if (!(fresh = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
 	if (content == NULL)
@@ -29,8 +27,6 @@ t_list		*ft_lstnew(char *content, size_t content_size)
 	{
 		if (!(fresh->content = malloc(content_size)))
 			return (NULL);
-		if (c != content[0])
-			content[0] = c;
 		ft_memcpy(fresh->content, content, content_size);
 		fresh->content_size = content_size;
 	}
@@ -38,18 +34,16 @@ t_list		*ft_lstnew(char *content, size_t content_size)
 	return (fresh);
 }
 
-void		ft_lsadd(t_list **list, char *content, size_t c_size)
+void		ft_lsadd(t_list **list, void const *content, size_t c_size)
 {
 	t_list	*tmp;
-	char	*c;
 
 	if (list)
 	{
 		tmp = *list;
 		while (tmp->next)
 			tmp = tmp->next;
-		c = (char *)content;
-		tmp->next = ft_lstnew(c, c_size);
+		tmp->next = ft_lstnew(content, c_size);
 	}
 }
 

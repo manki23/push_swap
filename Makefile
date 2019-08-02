@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/08/01 19:57:01 by manki            ###   ########.fr        #
+#    Updated: 2019/08/02 14:50:11 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ C_OBJ_PATH = ./obj
 PS_OBJ_PATH = ./obj
 LIB_PATH = ./libft
 
-CHECKER_SRC_NAME = checker.c
+CHECKER_SRC_NAME = checker.c ft_swap.c ft_push.c ft_rotate.c ft_reverse_rotate.c
 
 PUSH_SWAP_SRC_NAME = push_swap.c
 

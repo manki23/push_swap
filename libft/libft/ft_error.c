@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_front.c                               :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 12:40:41 by manki             #+#    #+#             */
-/*   Updated: 2019/08/02 12:04:46 by manki            ###   ########.fr       */
+/*   Created: 2019/08/02 13:11:59 by manki             #+#    #+#             */
+/*   Updated: 2019/08/02 13:12:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/mylibft.h"
 
-void	ft_list_push_front(t_list **list, void const *content, size_t c_size)
+t_byte		ft_error(char *str, int fd)
 {
-	t_list		*tmp;
-	t_list		*list_copy;
-
-	tmp = ft_lstnew(content, c_size);
-	if (list && tmp)
-	{
-		list_copy = *list;
-		tmp->next = list_copy;
-		*list = tmp;
-	}
+	ft_putendl_fd(str, fd);
+	return (-1);
 }

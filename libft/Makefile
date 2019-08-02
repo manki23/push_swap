@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/16 14:37:29 by manki             #+#    #+#              #
-#    Updated: 2019/08/01 19:13:54 by manki            ###   ########.fr        #
+#    Updated: 2019/08/02 13:13:57 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,12 +51,12 @@ LIBFT_NAME = ft_abs.c ft_memcmp.c ft_striter.c ft_bzero.c ft_memmove.c \
 			 ft_strnstr.c ft_itoa.c ft_str_is_lowercase.c ft_strrchr.c \
 			 ft_list_push_back.c ft_str_is_numeric.c ft_strrev.c \
 			 ft_list_push_front.c ft_str_is_printable.c ft_strsplit.c \
-			 ft_str_is_uppercase.c ft_strstr.c \
+			 ft_str_is_uppercase.c ft_strstr.c ft_atoll.c \
 			 ft_strcapitalize.c ft_strsub.c ft_lstiter.c ft_strcasecmp.c \
 			 ft_strtrim.c ft_strcasestr.c ft_strupcase.c \
 			 ft_lstmap.c ft_strclr.c ft_tolower.c ft_strcpy.c \
 			 ft_toupper.c ft_memccpy.c ft_strdup.c get_next_line.c \
-			 ft_memchr.c ft_strequ.c
+			 ft_memchr.c ft_strequ.c ft_error.c
 
 INC_NAME = ft_printf.h
 
