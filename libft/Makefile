@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/16 14:37:29 by manki             #+#    #+#              #
-#    Updated: 2019/08/14 13:35:13 by manki            ###   ########.fr        #
+#    Updated: 2019/08/14 17:39:55 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ LIBFT_NAME = ft_abs.c ft_memcmp.c ft_striter.c ft_bzero.c ft_memmove.c \
 			 ft_strtrim.c ft_strcasestr.c ft_strupcase.c \
 			 ft_lstmap.c ft_strclr.c ft_tolower.c ft_strcpy.c \
 			 ft_toupper.c ft_memccpy.c ft_strdup.c get_next_line.c \
-			 ft_memchr.c ft_strequ.c ft_error.c ft_split_whitespaces.c
+			 ft_memchr.c ft_strequ.c ft_error.c ft_split_whitespaces.c \
+			 ft_list_print.c
 
 INC_NAME = ft_printf.h
 
