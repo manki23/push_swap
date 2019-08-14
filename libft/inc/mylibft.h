@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 16:24:06 by manki             #+#    #+#             */
-/*   Updated: 2019/08/02 13:23:38 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/14 13:36:41 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,5 +255,6 @@ int					ft_abs(int nb);
 int					ft_isprime(unsigned int nb);
 char				*ft_strmap(char const *s, char (*f)(char));
 t_byte				ft_error(char *str, int fd);
+char				**ft_split_whitespaces(char *str);
 
 #endif

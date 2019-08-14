@@ -6,56 +6,11 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:23:53 by manki             #+#    #+#             */
-/*   Updated: 2019/08/02 16:50:58 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/14 12:36:29 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-static t_byte		ft_check_duplicates(t_list **a, char *av, int len)
-{
-	t_list	*tmp;
-
-	tmp = *a;
-	if (tmp)
-	{
-		while (tmp)
-		{
-			if (!ft_strcmp(av, tmp->content))
-				return (0);
-			tmp = tmp->next;
-		}
-		ft_lsadd(a, av, len);
-	}
-	return (1);
-}
-
-static t_byte		ft_check_arg(int ac, char *av[], t_list **a)
-{
-	int			j;
-	int			len;
-	long long	nb;
-
-	j = 0;
-	while (j < ac)
-	{
-		nb = ft_atoll(av[j]);
-		len = ft_strlen(av[j]);
-		if ((ft_str_is_numeric(av[j]) || (av[j][0] == '-' &&
-			ft_str_is_numeric(&av[j][1]))) && !((len == 10 ||
-			(av[j][0] == '-' && len == 11)) && (nb < INT_MIN || nb > INT_MAX)))
-		{
-			if (j == 0)
-				a[0] = ft_lstnew(av[j], len);
-			else if (!ft_check_duplicates(a, av[j], len))
-				return (0);
-		}
-		else
-			return (0);
-		j++;
-	}
-	return (1);
-}
 
 static t_byte		ft_check_instruction(char *input)
 {
@@ -109,34 +64,6 @@ static void			ft_apply_instruction(char *in, t_list **a, t_list **b)
 		ft_rrr(a, b);
 }
 
-static t_byte		ft_ok(t_list *a, t_list *b)
-{
-	t_list		*tmp;
-
-	if (!b)
-	{
-		tmp = a;
-		while (tmp && tmp->next)
-		{
-			if (ft_strcmp(tmp->content, tmp->next->content) > 0)
-				return (0);
-			tmp = tmp->next;
-		}
-		return (1);
-	}
-	else
-		return (0);
-}
-
-void				ft_print_ab(t_list *a, t_list *b)
-{
-	ft_putchar(14);
-	ft_printf("--\na = ");
-	ft_lstprint(a);
-	ft_printf("| b = ");
-	ft_lstprint(b);
-}
-
 int					main(int ac, char *av[])
 {
 	char	*in;
@@ -153,15 +80,20 @@ int					main(int ac, char *av[])
 			if (!ft_check_instruction(in))
 				return (ft_error("Error", 2));
 			ft_apply_instruction(in, &a, &b);
+			ft_strdel(&in);
 		}
-		if (ft_ok(a, b))
+		ft_strdel(&in);
+		if (ft_asort_bempty(a, b))
 			ft_printf("OK\n");
 		else
 			ft_printf("KO\n");
-		return (0);
+		ft_lstdel(&a);
+		ft_lstdel(&b);
 	}
 	else if (ac)
+	{
+		ft_lstdel(&a);
 		return (ft_error("Error", 2));
-	else
-		return (-1);
+	}
+	return (0);
 }
