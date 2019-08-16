@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_afficher.c                                      :+:      :+:    :+:   */
+/*   ft_ps_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 12:33:44 by manki             #+#    #+#             */
-/*   Updated: 2019/08/16 14:51:56 by manki            ###   ########.fr       */
+/*   Created: 2019/08/16 14:54:34 by manki             #+#    #+#             */
+/*   Updated: 2019/08/16 14:55:18 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/mylibft.h"
+#include "../inc/push_swap.h"
 
-void		ft_afficher_bit(char *str, int mod)
+void	ft_ps_display(t_list *a, t_list *b)
 {
-	int		i;
-
-	ft_putstr("[");
-	i = -1;
-	while (++i < (int)ft_strlen(str))
-	{
-		ft_putchar(str[i]);
-		if (!((i + 1) % mod))
-			ft_putchar(' ');
-	}
-	ft_putstr("]\n");
+	ft_printf("-----------------------\n");
+	ft_printf("list a = [ ");
+	ft_list_print(a, " | ");
+	ft_printf(" ]\nlist b = [ ");
+	ft_list_print(b, " | ");
+	ft_printf(" ]\n");
 }

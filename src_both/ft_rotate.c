@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:36:16 by manki             #+#    #+#             */
-/*   Updated: 2019/08/02 15:55:24 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/15 16:17:25 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_ra(t_list **a, t_list **b)
 	(void)b;
 	tmp = a[0];
 	first = a[0];
-	if (tmp)
+	if (tmp && tmp->next)
 	{
 		a[0] = a[0]->next;
 		while (tmp->next)
@@ -38,7 +38,7 @@ void		ft_rb(t_list **a, t_list **b)
 	(void)a;
 	tmp = b[0];
 	first = b[0];
-	if (tmp)
+	if (tmp && tmp->next)
 	{
 		b[0] = b[0]->next;
 		while (tmp->next)

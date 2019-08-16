@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 12:39:24 by manki             #+#    #+#             */
-/*   Updated: 2019/08/14 15:07:56 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/16 16:56:01 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ t_byte				ft_check_arg(int ac, char *av[], t_list **a)
 			(tab[i][0] == '-' && len == 11)) && (nb < INT_MIN || nb > INT_MAX)))
 			{
 				if (j == 0 && i == 0)
-				{
 					a[0] = ft_lstnew(tab[i], len + 1);
-				}
 				else if (!ft_check_duplicates(a, tab[i], len))
 				{
 					ft_delwordtable(tab);
