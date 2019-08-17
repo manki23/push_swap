@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:33:14 by manki             #+#    #+#             */
-/*   Updated: 2019/08/17 12:05:58 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/17 12:31:29 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_byte		ft_list_is_sort(t_list lst[]);
 char		*ft_lstmax(t_list *lst);
 char		*ft_lstmin(t_list *lst);
 
-void		ft_sort_a(t_list a[], t_list b[], t_list **output);
+t_list		*ft_sort_a(t_list a[], t_list b[], t_list **output);
 void		ft_reverse_sort_b(t_list a[], t_list b[], t_list **output);
 
 #endif

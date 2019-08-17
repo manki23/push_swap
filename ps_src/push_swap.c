@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:24:21 by manki             #+#    #+#             */
-/*   Updated: 2019/08/17 12:06:34 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/17 13:25:41 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ void			ft_reverse_sort_b(t_list a[], t_list b[], t_list **output)
 	ft_strdel(&pivot);
 }
 
-void			ft_sort_a(t_list a[], t_list b[], t_list **output)
+t_list			*ft_sort_a(t_list a[], t_list b[], t_list **output)
 {
 	char	*pivot;
 	int		i;
 
 	i = ft_lstlen(a);
 	pivot = ft_get_pivot(a);
-	while (i > 0 && ft_lstlen(a) > 2)
+	while (i > 0)
 	{
 		if (ft_nbdiff(a->content, pivot) > 0)
 			ft_instruction("ra", &a, &b, output);
@@ -107,6 +107,7 @@ void			ft_sort_a(t_list a[], t_list b[], t_list **output)
 	if (!ft_list_is_reverse_sort(b))
 		ft_reverse_sort_b(NULL, b, output);
 	ft_strdel(&pivot);
+	return (a);
 }
 
 static void		ft_quicksort(t_list a[], t_list b[], t_list **output)
@@ -115,9 +116,10 @@ static void		ft_quicksort(t_list a[], t_list b[], t_list **output)
 //	ft_ps_display(a, b);
 	if (!ft_list_is_sort(a))
 	{
-		ft_sort_a(a, b, output);
+		a = ft_sort_a(a, b, output);
 	}
 	ft_list_print(*output, "\n");
+	ft_lstdel(output);
 //	ft_putendl("End:");
 //	ft_ps_display(a, b);
 }
