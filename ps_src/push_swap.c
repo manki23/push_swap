@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:24:21 by manki             #+#    #+#             */
-/*   Updated: 2019/08/16 17:00:35 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/17 12:06:34 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char		*ft_get_pivot(t_list *a)
 	return (ft_lltoa(median));
 }
 
-void			ft_reverse_sort_b(t_list *a, t_list *b, t_list **output)
+void			ft_reverse_sort_b(t_list a[], t_list b[], t_list **output)
 {
 	char	*pivot;
 	int		i;
@@ -70,10 +70,20 @@ void			ft_reverse_sort_b(t_list *a, t_list *b, t_list **output)
 		ft_instruction("sb", &a, &b, output);
 	else if (ft_lstlen(b) >= 3 && !ft_list_is_reverse_sort(b))
 		ft_reverse_sort_b(NULL, b, output);
+	if (!ft_list_is_reverse_sort(b))
+		ft_reverse_sort_b(NULL, b, output);
+	else
+	{
+		i = ft_lstlen(b);
+		while (--i >= 0)
+			ft_instruction("rrb", &a, &b, output);
+		while (b)
+			ft_instruction("pa", &a, &b, output);
+	}
 	ft_strdel(&pivot);
 }
 
-void			ft_sort_a(t_list *a, t_list *b, t_list **output)
+void			ft_sort_a(t_list a[], t_list b[], t_list **output)
 {
 	char	*pivot;
 	int		i;
@@ -96,25 +106,20 @@ void			ft_sort_a(t_list *a, t_list *b, t_list **output)
 	}
 	if (!ft_list_is_reverse_sort(b))
 		ft_reverse_sort_b(NULL, b, output);
-	else
-	{
-		i = ft_lstlen(b);
-		ft_printf("b len = %d\n", i);
-	ft_ps_display(a, b);
-		ft_printf("pivot = %s\n", pivot);
-		while (--i >= 0)
-			ft_instruction("rrb", &a, &b, output);
-		while (b)
-			ft_instruction("pa", &a, &b, output);
-	}
 	ft_strdel(&pivot);
 }
 
-void			ft_quicksort(t_list *a, t_list *b, t_list **output)
+static void		ft_quicksort(t_list a[], t_list b[], t_list **output)
 {
+//	ft_putendl("Beginning:");
+//	ft_ps_display(a, b);
 	if (!ft_list_is_sort(a))
+	{
 		ft_sort_a(a, b, output);
+	}
 	ft_list_print(*output, "\n");
+//	ft_putendl("End:");
+//	ft_ps_display(a, b);
 }
 
 int		main(int ac, char *av[])
