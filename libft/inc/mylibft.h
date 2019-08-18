@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 16:24:06 by manki             #+#    #+#             */
-/*   Updated: 2019/08/14 17:41:48 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/18 16:16:10 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void				*ft_realloc(void *ptr, size_t size);
 int					ft_dbl_len(long double nb);
 size_t				ft_max(size_t a, size_t b);
 void				ft_lstdel(t_list **alst);
+void				ft_lstdelone(t_list **alst);
 
 # define BUFF_SIZE 32
 # define FD 42000
