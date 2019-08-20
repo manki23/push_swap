@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:23:53 by manki             #+#    #+#             */
-/*   Updated: 2019/08/18 17:09:09 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/20 17:08:41 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,34 +38,6 @@ static t_byte		ft_check_instruction(char *input)
 	return (0);
 }
 
-static void			ft_apply_instruction(char *in, t_list **a, t_list **b)
-{
-	if (!(ft_strcmp(in, "sa")))
-		ft_sa(a, b);
-	else if (!(ft_strcmp(in, "sb")))
-		ft_sb(a, b);
-	else if (!(ft_strcmp(in, "ss")))
-		ft_ss(a, b);
-	else if (!(ft_strcmp(in, "pa")))
-		ft_pa(a, b);
-	else if (!(ft_strcmp(in, "pb")))
-		ft_pb(a, b);
-	else if (!(ft_strcmp(in, "ra")))
-		ft_ra(a, b);
-	else if (!(ft_strcmp(in, "rb")))
-		ft_rb(a, b);
-	else if (!(ft_strcmp(in, "rr")))
-		ft_rr(a, b);
-	else if (!(ft_strcmp(in, "rra")))
-		ft_rra(a, b);
-	else if (!(ft_strcmp(in, "rrb")))
-		ft_rrb(a, b);
-	else if (!(ft_strcmp(in, "rrr")))
-		ft_rrr(a, b);
-	ft_putendl(in);
-	ft_ps_display(*a, *b);
-}
-
 int					main(int ac, char *av[])
 {
 	char	*in;
@@ -85,7 +57,7 @@ int					main(int ac, char *av[])
 			ft_strdel(&in);
 		}
 		ft_strdel(&in);
-		if (ft_asort_bempty(a, b))
+		if (ft_list_is_sort(a) && !b)
 			ft_printf("OK\n");
 		else
 			ft_printf("KO\n");
