@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:33:14 by manki             #+#    #+#             */
-/*   Updated: 2019/08/20 17:15:14 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/20 19:46:20 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ long long	ft_nbdiff(char *nb1, char *nb2);
 
 void		ft_apply_instruction(char *in, t_list **a, t_list **b);
 
-void		ft_add_instruction(char *in, t_list **a, t_list **b, t_list **out);
-char		*ft_get_pivot(t_list *a);
+void		ft_check_almost_sort(t_list **a, t_list **b, t_list **output);
 
 t_byte		ft_list_is_reverse_sort(t_list lst[]);
 t_byte		ft_list_is_sort(t_list lst[]);

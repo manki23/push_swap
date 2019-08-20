@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:23:53 by manki             #+#    #+#             */
-/*   Updated: 2019/08/20 17:08:41 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/20 19:58:38 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ static t_byte		ft_check_instruction(char *input)
 	return (0);
 }
 
+static void			ft_output(t_list **a, t_list **b, char **in)
+{
+	if (ft_list_is_sort(a[0]) && !b[0])
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	ft_lstdel(a);
+	ft_lstdel(b);
+	ft_strdel(in);
+}
+
 int					main(int ac, char *av[])
 {
 	char	*in;
@@ -56,13 +67,7 @@ int					main(int ac, char *av[])
 			ft_apply_instruction(in, &a, &b);
 			ft_strdel(&in);
 		}
-		ft_strdel(&in);
-		if (ft_list_is_sort(a) && !b)
-			ft_printf("OK\n");
-		else
-			ft_printf("KO\n");
-		ft_lstdel(&a);
-		ft_lstdel(&b);
+		ft_output(&a, &b, &in);
 	}
 	else if (ac)
 	{

@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/08/20 17:21:57 by manki            ###   ########.fr        #
+#    Updated: 2019/08/20 19:48:00 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ LIB_PATH = ./libft
 
 CHECKER_SRC_NAME = checker.c
 
-PUSH_SWAP_SRC_NAME = push_swap.c ft_lstmax.c ft_sort_a.c ft_reverse_sort_b.c
+PUSH_SWAP_SRC_NAME = push_swap.c ft_lstmax.c ft_sort_a.c ft_reverse_sort_b.c \
+					 ft_check_almost_sort.c
 
 BOTH_SRC_NAME = ft_swap.c ft_push.c ft_rotate.c ft_reverse_rotate.c \
 				ft_check_arg.c ft_ps_display.c ft_apply_instruction.c \
