@@ -6,11 +6,10 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 11:32:15 by manki             #+#    #+#             */
-/*   Updated: 2019/08/14 14:54:21 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:06:20 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/mylibft.h"
 long long		ft_atoll(const char *str)
 {
 	long long	i;

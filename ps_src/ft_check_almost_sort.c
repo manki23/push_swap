@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 19:42:56 by manki             #+#    #+#             */
-/*   Updated: 2019/08/20 19:46:26 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 11:30:04 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ static void		ft_sort_five(t_list **a, t_list **b, t_list **output)
 
 void			ft_check_almost_sort(t_list **a, t_list **b, t_list **output)
 {
-
 	if (!ft_list_is_sort(a[0]) && ft_lstlen(a[0]) > 3)
 	{
 		if (ft_lstlen(a[0]) == 5)

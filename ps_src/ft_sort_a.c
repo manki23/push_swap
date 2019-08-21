@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:56:23 by manki             #+#    #+#             */
-/*   Updated: 2019/08/20 20:08:44 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:01:44 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,35 @@ static void		ft_sort3_complicated_a(t_list a[], t_list b[], t_list **output)
 		ft_add_instr("sa", &a, NULL, output);
 }
 
-void			ft_sort_a(t_list a[], t_list b[], t_list **output)
+static void		ft_split(t_list **a, t_list **b, t_list **output)
 {
-	char	*pivot;
-	int		ra_count;
 	int		i;
+	int		ra_count;
+	char	*pivot;
 
 	ra_count = 0;
-	i = ft_lstlen(a);
-	if (i > 3)
+	pivot = ft_get_pivot(a[0]);
+	i = ft_lstlen(a[0]);
+	while (i > 0)
 	{
-		pivot = ft_get_pivot(a);
-		while (i > 0)
+		if (ft_nbdiff(a[0]->content, pivot) > 0)
 		{
-			if (ft_nbdiff(a->content, pivot) > 0)
-			{
-				ft_add_instr("ra", &a, &b, output);
-				ra_count++;
-			}
-			else
-				ft_add_instr("pb", &a, &b, output);
-			i--;
+			ft_add_instr("ra", a, b, output);
+			ra_count++;
 		}
-		while (a && --ra_count >= 0)
-			ft_add_instr("rra", &a, &b, output);
-		ft_strdel(&pivot);
+		else
+			ft_add_instr("pb", a, b, output);
+		i--;
 	}
+	while (a[0] && --ra_count >= 0)
+		ft_add_instr("rra", a, b, output);
+	ft_strdel(&pivot);
+}
+
+void			ft_sort_a(t_list a[], t_list b[], t_list **output)
+{
+	if (ft_lstlen(a) > 3)
+		ft_split(&a, &b, output);
 	if (!ft_list_is_sort(a) && ft_lstlen(a) > 3)
 		ft_sort_a(a, NULL, output);
 	ft_sort3_complicated_a(a, b, output);

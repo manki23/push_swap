@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 16:24:06 by manki             #+#    #+#             */
-/*   Updated: 2019/08/18 16:16:10 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:05:45 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int					get_next_line(const int fd, char **line);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-void				ft_list_push_front(t_list **l, void const *c, size_t c_size);
+void				ft_list_push_front(t_list **l, void const *c, size_t c_siz);
 void				ft_list_push_back(t_list **l, void const *c, size_t c_size);
 
 char				*ft_strcpy(char *dst, const char *src);
@@ -192,7 +192,7 @@ char				*ft_strncat(char *s1, const char *s2, size_t n);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
-char				*ft_strnstr(const char *haystack, const char *needle, size_t l);
+char				*ft_strnstr(const char *stack, const char *needl, size_t l);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_isalpha(int c);
 int					ft_isalnum(int c);
@@ -227,7 +227,7 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 char				*ft_strrev(char *str);
-void				ft_sort_integer_table(int *tab,int size);
+void				ft_sort_integer_table(int *tab, int size);
 void				ft_sort_wordtab(char **tab);
 void				ft_print_words_tables(char **tab, char c);
 int					ft_isblank(int c);

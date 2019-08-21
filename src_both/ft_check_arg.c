@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 12:39:24 by manki             #+#    #+#             */
-/*   Updated: 2019/08/16 16:56:01 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 11:56:38 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_byte		ft_check_duplicates(t_list **a, char *av, int len)
 	return (1);
 }
 
-static void			ft_delwordtable(char **str)
+static t_byte		ft_delwordtable(char **str)
 {
 	int		i;
 
@@ -42,14 +42,35 @@ static void			ft_delwordtable(char **str)
 	}
 	free(str);
 	str = NULL;
+	return (0);
+}
+
+static t_byte		ft_savelines(char **tab, int i, int j, t_list **a)
+{
+	int			len;
+	long long	nb;
+
+	nb = ft_atoll(tab[i]);
+	len = ft_strlen(tab[i]);
+	if ((ft_str_is_numeric(tab[i]) || (tab[i][0] == '-' &&
+					ft_str_is_numeric(&tab[i][1]))) && !((len == 10 ||
+					(tab[i][0] == '-' && len == 11)) &&
+				(nb < INT_MIN || nb > INT_MAX)))
+	{
+		if (j == 0 && i == 0)
+			a[0] = ft_lstnew(tab[i], len + 1);
+		else if (!ft_check_duplicates(a, tab[i], len))
+			return (ft_delwordtable(tab));
+	}
+	else
+		return (ft_delwordtable(tab));
+	return (1);
 }
 
 t_byte				ft_check_arg(int ac, char *av[], t_list **a)
 {
 	int			i;
 	int			j;
-	int			len;
-	long long	nb;
 	char		**tab;
 
 	j = 0;
@@ -59,25 +80,8 @@ t_byte				ft_check_arg(int ac, char *av[], t_list **a)
 		i = 0;
 		while (tab[i])
 		{
-			nb = ft_atoll(tab[i]);
-			len = ft_strlen(tab[i]);
-			if ((ft_str_is_numeric(tab[i]) || (tab[i][0] == '-' &&
-			ft_str_is_numeric(&tab[i][1]))) && !((len == 10 ||
-			(tab[i][0] == '-' && len == 11)) && (nb < INT_MIN || nb > INT_MAX)))
-			{
-				if (j == 0 && i == 0)
-					a[0] = ft_lstnew(tab[i], len + 1);
-				else if (!ft_check_duplicates(a, tab[i], len))
-				{
-					ft_delwordtable(tab);
-					return (0);
-				}
-			}
-			else
-			{
-				ft_delwordtable(tab);
+			if (!ft_savelines(tab, i, j, a))
 				return (0);
-			}
 			i++;
 		}
 		j++;

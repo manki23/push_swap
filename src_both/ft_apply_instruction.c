@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 17:02:41 by manki             #+#    #+#             */
-/*   Updated: 2019/08/20 17:18:23 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 11:29:13 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,4 @@ void	ft_apply_instruction(char *in, t_list **a, t_list **b)
 		ft_rrb(a, b);
 	else if (!(ft_strcmp(in, "rrr")))
 		ft_rrr(a, b);
-	//ft_putendl(in);
-	//ft_ps_display(*a, *b);
 }
