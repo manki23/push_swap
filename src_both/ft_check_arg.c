@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 12:39:24 by manki             #+#    #+#             */
-/*   Updated: 2019/08/21 11:56:38 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:36:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ static t_byte		ft_savelines(char **tab, int i, int j, t_list **a)
 	nb = ft_atoll(tab[i]);
 	len = ft_strlen(tab[i]);
 	if ((ft_str_is_numeric(tab[i]) || (tab[i][0] == '-' &&
-					ft_str_is_numeric(&tab[i][1]))) && !((len == 10 ||
-					(tab[i][0] == '-' && len == 11)) &&
-				(nb < INT_MIN || nb > INT_MAX)))
+					ft_str_is_numeric(&tab[i][1]))) &&
+			(nb >= INT_MIN && nb <= INT_MAX))
 	{
 		if (j == 0 && i == 0)
 			a[0] = ft_lstnew(tab[i], len + 1);
