@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/08/20 19:48:00 by manki            ###   ########.fr        #
+#    Updated: 2019/08/21 17:12:02 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,11 +87,11 @@ $(BOTH_OBJ_PATH)/%.o: $(BOTH_SRC_PATH)/%.c
 	@mkdir $(BOTH_OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(FLAGS) -o $@ -c $<
 
-$(CHECKER_NAME): $(C_OBJ) $(BOTH_OBJ)
+$(CHECKER_NAME): $(LIB) $(C_OBJ) $(BOTH_OBJ)
 	@$(CC) $(FLAGS) $(CHECKER_SRC) $(BOTH_SRC) $(LIB) -o $(CHECKER_NAME)
 	@echo "✅$(_GREEN)checker created 😎$(_END)"
 
-$(PUSH_SWAP_NAME): $(PS_OBJ) $(BOTH_OBJ)
+$(PUSH_SWAP_NAME): $(LIB) $(PS_OBJ) $(BOTH_OBJ)
 	@$(CC) $(FLAGS) $(PUSH_SWAP_SRC) $(BOTH_SRC) $(LIB) -o $(PUSH_SWAP_NAME)
 	@echo "✅$(_GREEN)push_swap created 😎$(_END)"
 

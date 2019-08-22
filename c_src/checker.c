@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:23:53 by manki             #+#    #+#             */
-/*   Updated: 2019/08/20 19:58:38 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/22 15:59:06 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,13 @@ int					main(int ac, char *av[])
 		while (get_next_line(0, &in) == 1 && ft_strlen(in))
 		{
 			if (!ft_check_instruction(in))
-				return (ft_error("Error", 2));
+				ft_error("Error", 2);
 			ft_apply_instruction(in, &a, &b);
 			ft_strdel(&in);
 		}
 		ft_output(&a, &b, &in);
 	}
 	else if (ac)
-	{
-		ft_lstdel(&a);
-		return (ft_error("Error", 2));
-	}
+		ft_error("Error", 2);
 	return (0);
 }

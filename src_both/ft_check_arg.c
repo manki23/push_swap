@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 12:39:24 by manki             #+#    #+#             */
-/*   Updated: 2019/08/21 12:36:46 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/22 15:47:25 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static t_byte		ft_check_duplicates(t_list **a, char *av, int len)
 	{
 		while (tmp)
 		{
-			if (!ft_strcmp(av, tmp->content))
+			if (!ft_strcmp(av, tmp->content) ||
+					(ft_atoll(av) == ft_atoll(tmp->content)))
 				return (0);
 			tmp = tmp->next;
 		}
@@ -45,16 +46,17 @@ static t_byte		ft_delwordtable(char **str)
 	return (0);
 }
 
-static t_byte		ft_savelines(char **tab, int i, int j, t_list **a)
+static t_byte		ft_check_one(char **tab, int i, int j, t_list **a)
 {
 	int			len;
 	long long	nb;
 
 	nb = ft_atoll(tab[i]);
 	len = ft_strlen(tab[i]);
-	if ((ft_str_is_numeric(tab[i]) || (tab[i][0] == '-' &&
+	if (len <= 11 && (ft_str_is_numeric(tab[i]) || (tab[i][0] == '-' &&
 					ft_str_is_numeric(&tab[i][1]))) &&
-			(nb >= INT_MIN && nb <= INT_MAX))
+			(nb >= INT_MIN && nb <= INT_MAX) && ft_strcmp(tab[i], "-") != 0 &&
+			ft_strcmp(tab[i], "-0") != 0)
 	{
 		if (j == 0 && i == 0)
 			a[0] = ft_lstnew(tab[i], len + 1);
@@ -79,7 +81,7 @@ t_byte				ft_check_arg(int ac, char *av[], t_list **a)
 		i = 0;
 		while (tab[i])
 		{
-			if (!ft_savelines(tab, i, j, a))
+			if (!ft_check_one(tab, i, j, a))
 				return (0);
 			i++;
 		}
