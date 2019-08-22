@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 19:42:56 by manki             #+#    #+#             */
-/*   Updated: 2019/08/21 11:30:04 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:34:56 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		ft_sort3_a(t_list **a, t_list **output)
 		ft_add_instr("sa", a, NULL, output);
 }
 
-static t_byte	ft_almost_sort(t_list *lst)
+static t_byte	ft_end_swap(t_list *lst)
 {
 	t_list		*tmp;
 	t_list		*previous;
@@ -54,6 +54,27 @@ static t_byte	ft_almost_sort(t_list *lst)
 		return (1);
 	else
 		return (0);
+}
+
+static void		ft_sort_four(t_list **a, t_list **b, t_list **output)
+{
+	int		stop;
+	char	*min;
+
+	stop = 0;
+	min = ft_lstmin(a[0]);
+	while (!stop)
+	{
+		if (!(ft_nbdiff(a[0]->content, min)))
+		{
+			ft_add_instr("pb", a, b, output);
+			stop = 1;
+		}
+		else
+			ft_add_instr("ra", a, b, output);
+	}
+	ft_sort3_a(a, output);
+	ft_add_instr("pa", a, b, output);
 }
 
 static void		ft_sort_five(t_list **a, t_list **b, t_list **output)
@@ -84,16 +105,91 @@ static void		ft_sort_five(t_list **a, t_list **b, t_list **output)
 		ft_add_instr("ra", a, b, output);
 }
 
+static void		ft_sort_six(t_list **a, t_list **b, t_list **output)
+{
+	int		stop;
+	char	*min;
+
+	stop = 0;
+	min = ft_lstmin(a[0]);
+	while (!stop)
+	{
+		if (!(ft_nbdiff(a[0]->content, min)))
+		{
+			ft_add_instr("pb", a, b, output);
+			stop = 1;
+		}
+		else
+			ft_add_instr("ra", a, b, output);
+	}
+	ft_sort_five(a, b, output);
+	ft_add_instr("pa", a, b, output);
+}
+
+static void		ft_sort_seven(t_list **a, t_list **b, t_list **output)
+{
+	int		stop;
+	char	*min;
+
+	stop = 0;
+	min = ft_lstmin(a[0]);
+	while (!stop)
+	{
+		if (!(ft_nbdiff(a[0]->content, min)))
+		{
+			ft_add_instr("pb", a, b, output);
+			stop = 1;
+		}
+		else
+			ft_add_instr("ra", a, b, output);
+	}
+	ft_sort_six(a, b, output);
+	ft_add_instr("pa", a, b, output);
+}
+/*
+static t_byte	ft_almost_sort(t_list **a, t_list **b, t_list **output)
+{
+	t_list		*tmp;
+	char		*intruder;
+	t_byte		count;
+	int			ra;
+	int			rra;
+
+	tmp = a[0];
+	count = 0;
+	while (tmp && tmp->next)
+	{
+		if (ft_nbdiff(tmp->content, tmp->next->content) > 0 && !count)
+		{
+			intruder = tmp->content;
+			count++;
+		}
+		else if (ft_nbdiff(tmp->content, tmp->next->content) > 0 && count)
+			return (0);
+	}
+	if (count == 1)
+	{
+
+	}
+	return (1);
+}
+*/
 void			ft_check_almost_sort(t_list **a, t_list **b, t_list **output)
 {
 	if (!ft_list_is_sort(a[0]) && ft_lstlen(a[0]) > 3)
 	{
-		if (ft_lstlen(a[0]) == 5)
+		if (ft_lstlen(a[0]) == 6)
+			ft_sort_six(a, b, output);
+		else if (ft_lstlen(a[0]) == 4)
+			ft_sort_four(a, b, output);
+		else if (ft_lstlen(a[0]) == 7)
+			ft_sort_seven(a, b, output);
+		else if (ft_lstlen(a[0]) == 5)
 			ft_sort_five(a, b, output);
 		else if (ft_list_is_sort(a[0]->next) &&
 				(ft_nbdiff(a[0]->content, a[0]->next->next->content) < 0))
 			ft_add_instr("sa", a, b, output);
-		else if (ft_almost_sort(a[0]))
+		else if (ft_end_swap(a[0]))
 		{
 			ft_add_instr("rra", a, b, output);
 			ft_add_instr("rra", a, b, output);
