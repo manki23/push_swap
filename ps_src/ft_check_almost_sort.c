@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 19:42:56 by manki             #+#    #+#             */
-/*   Updated: 2019/08/22 21:34:56 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/23 10:20:41 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,47 +146,60 @@ static void		ft_sort_seven(t_list **a, t_list **b, t_list **output)
 	ft_sort_six(a, b, output);
 	ft_add_instr("pa", a, b, output);
 }
-/*
+
 static t_byte	ft_almost_sort(t_list **a, t_list **b, t_list **output)
 {
 	t_list		*tmp;
 	char		*intruder;
 	t_byte		count;
-	int			ra;
-	int			rra;
+	int			ra_or_rra;
 
 	tmp = a[0];
 	count = 0;
 	while (tmp && tmp->next)
 	{
-		if (ft_nbdiff(tmp->content, tmp->next->content) > 0 && !count)
+		if (ft_nbdiff(tmp->content, tmp->next->content) > 0 && !count &&
+				ft_nbdiff(tmp->next->content, ft_lstmin(a[0])) == 0)
 		{
 			intruder = tmp->content;
 			count++;
 		}
 		else if (ft_nbdiff(tmp->content, tmp->next->content) > 0 && count)
 			return (0);
+		tmp = tmp->next;
 	}
 	if (count == 1)
 	{
-
+		ra_or_rra = 0;
+		tmp = a[0];
+		while (tmp && tmp->next && count)
+		{
+			if (ft_nbdiff(tmp->content, ft_lstmin(a[0])) == 0)
+				count = 0;
+			else
+				ra_or_rra++;
+			tmp = tmp->next;
+		}
+		if (ra_or_rra <= (ft_lstlen(a[0]) / 2))
+		{
+			while (--ra_or_rra >= 0)
+				ft_add_instr("ra", a, b, output);
+		}
+		else
+		{
+			ra_or_rra = ft_lstlen(a[0]) - ra_or_rra;
+			while (--ra_or_rra >= 0)
+				ft_add_instr("rra", a, b, output);
+		}
 	}
 	return (1);
 }
-*/
+
 void			ft_check_almost_sort(t_list **a, t_list **b, t_list **output)
 {
 	if (!ft_list_is_sort(a[0]) && ft_lstlen(a[0]) > 3)
 	{
-		if (ft_lstlen(a[0]) == 6)
-			ft_sort_six(a, b, output);
-		else if (ft_lstlen(a[0]) == 4)
-			ft_sort_four(a, b, output);
-		else if (ft_lstlen(a[0]) == 7)
-			ft_sort_seven(a, b, output);
-		else if (ft_lstlen(a[0]) == 5)
-			ft_sort_five(a, b, output);
-		else if (ft_list_is_sort(a[0]->next) &&
+		if (ft_list_is_sort(a[0]->next) &&
 				(ft_nbdiff(a[0]->content, a[0]->next->next->content) < 0))
 			ft_add_instr("sa", a, b, output);
 		else if (ft_end_swap(a[0]))
@@ -197,6 +210,16 @@ void			ft_check_almost_sort(t_list **a, t_list **b, t_list **output)
 			ft_add_instr("ra", a, b, output);
 			ft_add_instr("ra", a, b, output);
 		}
+		else if (!ft_list_is_sort(a[0]))
+			ft_almost_sort(a, b, output);
+		else if (ft_lstlen(a[0]) == 6)
+			ft_sort_six(a, b, output);
+		else if (ft_lstlen(a[0]) == 4)
+			ft_sort_four(a, b, output);
+		else if (ft_lstlen(a[0]) == 7)
+			ft_sort_seven(a, b, output);
+		else if (ft_lstlen(a[0]) == 5)
+			ft_sort_five(a, b, output);
 	}
 	else
 		ft_sort3_a(a, output);
