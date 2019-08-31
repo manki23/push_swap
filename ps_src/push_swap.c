@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:24:21 by manki             #+#    #+#             */
-/*   Updated: 2019/08/23 13:00:57 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:19:56 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		ft_push_swap_display(t_list *output, t_byte *opt)
 		ft_putendl(_END);
 		output = output->next;
 		if (opt[2])
-			usleep(100000);
+			usleep(USLEEP_DEFAULT_VALUE);
 	}
 }
 

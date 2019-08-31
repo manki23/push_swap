@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:33:14 by manki             #+#    #+#             */
-/*   Updated: 2019/08/23 13:00:46 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:18:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define _CYAN "\033[36m"
 # define _WHITE "\033[37m"
 # define _END "\033[0m"
+
+# define USLEEP_DEFAULT_VALUE 100000
 
 void		ft_sa(t_list **a, t_list **b);
 void		ft_sb(t_list **a, t_list **b);

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:23:53 by manki             #+#    #+#             */
-/*   Updated: 2019/08/23 12:40:10 by manki            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:19:21 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void			ft_checker_display(t_list **a, t_list **b, t_byte *opt, char *in)
 	if (opt[1])
 		ft_putstr(_END);
 	if (opt[2])
-		usleep(100000);
+		usleep(USLEEP_DEFAULT_VALUE);
 }
 
 int					main(int ac, char *av[])
