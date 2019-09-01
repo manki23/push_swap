@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:40:44 by manki             #+#    #+#             */
-/*   Updated: 2019/08/22 20:28:21 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/01 13:55:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_byte		ft_combine(t_list *previous, t_list **ref, char *str)
 	return (1);
 }
 
-void			ft_optimize(t_list **output)
+void				ft_optimize(t_list **output)
 {
 	t_list		*tmp;
 	t_byte		modif;
@@ -66,10 +66,9 @@ void			ft_optimize(t_list **output)
 
 	modif = 1;
 	previous = NULL;
-	while (modif)
+	while (modif && (tmp = output[0]))
 	{
 		modif = 0;
-		tmp = output[0];
 		while (tmp && tmp->next)
 		{
 			if (ft_cmp(tmp->content, tmp->next->content, "pa", "pb") ||

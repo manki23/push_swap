@@ -6,19 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:56:23 by manki             #+#    #+#             */
-/*   Updated: 2019/08/21 12:01:44 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/01 19:15:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void		ft_add_instr(char *in, t_list **a, t_list **b, t_list **out)
-{
-	ft_apply_instruction(in, a, b);
-	ft_lsadd(out, in, ft_strlen(in) + 1);
-}
-
-static char		*ft_get_pivot(t_list *a)
+char			*ft_get_pivot(t_list *a)
 {
 	long long	median;
 
@@ -26,7 +20,7 @@ static char		*ft_get_pivot(t_list *a)
 	return (ft_lltoa(median));
 }
 
-static void		ft_sort3_complicated_a(t_list a[], t_list b[], t_list **output)
+void			ft_sort3_complicated_a(t_list a[], t_list b[], t_list **output)
 {
 	while (ft_lstlen(a) == 3 && !ft_list_is_sort(a))
 	{

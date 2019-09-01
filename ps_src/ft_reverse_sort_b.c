@@ -6,25 +6,11 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:56:55 by manki             #+#    #+#             */
-/*   Updated: 2019/08/21 12:02:38 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/01 18:24:30 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-static void		ft_add_instr(char *in, t_list **a, t_list **b, t_list **out)
-{
-	ft_apply_instruction(in, a, b);
-	ft_lsadd(out, in, ft_strlen(in) + 1);
-}
-
-static char		*ft_get_pivot(t_list *a)
-{
-	long long	median;
-
-	median = (ft_atoll(ft_lstmin(a)) + ft_atoll(ft_lstmax(a))) / 2;
-	return (ft_lltoa(median));
-}
 
 static void		ft_reverse_sort3_b(t_list **a, t_list **b, t_list **output)
 {

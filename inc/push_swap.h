@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:33:14 by manki             #+#    #+#             */
-/*   Updated: 2019/08/31 18:18:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/01 18:20:15 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,26 @@ long long	ft_nbdiff(char *nb1, char *nb2);
 void		ft_apply_instruction(char *in, t_list **a, t_list **b);
 
 void		ft_check_almost_sort(t_list **a, t_list **b, t_list **output);
+void		ft_add_instr(char *in, t_list **a, t_list **b, t_list **out);
+
+void		ft_sort3_a(t_list **a, t_list **output, t_byte bol);
+void		ft_sort3_complicated_a(t_list a[], t_list b[], t_list **output);
+void		ft_sort_four(t_list **a, t_list **b, t_list **output, t_byte bol);
+void		ft_sort_five(t_list **a, t_list **b, t_list **output, t_byte bol);
+void		ft_sort_six(t_list **a, t_list **b, t_list **output);
+void		ft_sort_seven(t_list **a, t_list **b, t_list **output);
 
 void		ft_optimize(t_list **output);
+
+void		ft_replace_rra(t_list **output, t_list *a, t_list *b);
+void		ft_replace_rrb(t_list **output, t_list *a, t_list *b);
 
 t_byte		ft_list_is_reverse_sort(t_list lst[]);
 t_byte		ft_list_is_sort(t_list lst[]);
 char		*ft_lstmax(t_list *lst);
 char		*ft_lstmin(t_list *lst);
 
+char		*ft_get_pivot(t_list *a);
 void		ft_sort_a(t_list a[], t_list b[], t_list **output);
 void		ft_reverse_sort_b(t_list a[], t_list b[], t_list **output);
 

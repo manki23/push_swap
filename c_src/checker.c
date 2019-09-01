@@ -6,13 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:23:53 by manki             #+#    #+#             */
-/*   Updated: 2019/08/31 18:19:21 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/01 19:49:57 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static t_byte		ft_check_instruction(char *input)
+static t_byte	ft_check_instruction(char *input)
 {
 	char	inst[11][4];
 	int		i;
@@ -38,7 +38,7 @@ static t_byte		ft_check_instruction(char *input)
 	return (0);
 }
 
-static void			ft_output(t_list **a, t_list **b, char **in, t_byte *opt)
+static void		ft_output(t_list **a, t_list **b, char **in, t_byte *opt)
 {
 	if (ft_list_is_sort(a[0]) && !b[0])
 	{
@@ -59,27 +59,43 @@ static void			ft_output(t_list **a, t_list **b, char **in, t_byte *opt)
 	ft_strdel(in);
 }
 
-static void			ft_checker_display(t_list **a, t_list **b, t_byte *opt, char *in)
+static void		ft_display_input(char in[], t_byte *opt)
 {
-	if (opt[1])
+	if (opt[1] && (!ft_strcmp(in, "sa") ||
+				!ft_strcmp(in, "sb")))
+		ft_putstr(_PURPLE);
+	else if (opt[1] && (!ft_strcmp(in, "pa") ||
+				!ft_strcmp(in, "pb")))
 		ft_putstr(_CYAN);
-	if (opt[0])
-		ft_putendl(in);
-	if (opt[1])
-		ft_putstr(_END);
-	if (opt[1] && ft_list_is_sort(a[0]) && ft_list_is_reverse_sort(b[0]))
-		ft_putstr(_GREEN);
-	else if (opt[1])
+	else if (opt[1] && (!ft_strcmp(in, "ra") ||
+				!ft_strcmp(in, "rb")))
 		ft_putstr(_YELLOW);
-	if (opt[0])
-		ft_ps_display(*a, *b);
-	if (opt[1])
-		ft_putstr(_END);
-	if (opt[2])
-		usleep(USLEEP_DEFAULT_VALUE);
+	else if (opt[1] && (!ft_strcmp(in, "rra") ||
+				!ft_strcmp(in, "rrb")))
+		ft_putstr(_BLUE);
+	else if (opt[1])
+		ft_putstr(_GREEN);
+	ft_putstr(in);
+	ft_putendl(_END);
 }
 
-int					main(int ac, char *av[])
+static void		ft_checker_display(t_list **a, t_list **b, t_byte *op, char *in)
+{
+	if (op[0])
+		ft_display_input(in, op);
+	if (op[1] && ft_list_is_sort(a[0]) && ft_list_is_reverse_sort(b[0]))
+		ft_putstr(_GREEN);
+	else if (op[1])
+		ft_putstr(_YELLOW);
+	if (op[0])
+		ft_ps_display(*a, *b);
+	if (op[1])
+		ft_putstr(_END);
+	if (op[2])
+		usleep(USLEEP_DEFAULT_VALUE * op[3]);
+}
+
+int				main(int ac, char *av[])
 {
 	char	*in;
 	t_list	*a;
@@ -87,11 +103,10 @@ int					main(int ac, char *av[])
 	t_byte	*opt;
 
 	av++;
-	ac--;
 	a = NULL;
 	b = NULL;
-	opt = ft_memalloc(3);
-	if (ac && ft_check_arg(ac, av, &a, &opt))
+	opt = ft_memalloc(4);
+	if (--ac && ft_check_arg(ac, av, &a, &opt))
 	{
 		while (get_next_line(0, &in) == 1 && ft_strlen(in))
 		{

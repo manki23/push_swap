@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 12:39:24 by manki             #+#    #+#             */
-/*   Updated: 2019/08/23 12:26:41 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/01 19:50:10 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,16 @@ static t_byte		ft_check_option(char *input, t_byte *opt)
 	else if (!opt[1] && !ft_strcmp(input, "-c"))
 		opt[1] = 1;
 	else if (!opt[2] && !ft_strcmp(input, "-s"))
+	{
+		opt[3] = 1;
 		opt[2] = 1;
+	}
+	else if (!opt[2] && ft_strlen(input) == 3 && input[0] == '-'
+			&& input[1] == 's' && ft_isdigit(input[2]))
+	{
+		opt[2] = 1;
+		opt[3] = input[2] - '0';
+	}
 	else
 		ret = 0;
 	return (ret);
