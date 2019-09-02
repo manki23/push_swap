@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 19:42:56 by manki             #+#    #+#             */
-/*   Updated: 2019/09/01 19:01:16 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/02 11:52:14 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,6 @@ void			ft_check_almost_sort(t_list **a, t_list **b, t_list **output)
 			ft_add_instr("ra", a, b, output);
 			ft_add_instr("ra", a, b, output);
 		}
-		else if (ft_lstlen(a[0]) == 4)
-			ft_sort_four(a, b, output, 0);
-		else if (ft_lstlen(a[0]) == 5)
-			ft_sort_five(a, b, output, 0);
-		else if (ft_lstlen(a[0]) == 6)
-			ft_sort_six(a, b, output);
-		else if (ft_lstlen(a[0]) == 7)
-			ft_sort_seven(a, b, output);
 		else if (!ft_list_is_sort(a[0]))
 			ft_almost_sort(a, b, output);
 	}
