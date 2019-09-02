@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 18:24:21 by manki             #+#    #+#             */
-/*   Updated: 2019/09/01 19:28:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/02 11:21:26 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static t_list	**ft_save_list(t_list **a, int len)
 	return (tab);
 }
 
-static void		ft_list_remake(t_list **tab, t_list *a, t_list *b, int len)
+static void		ft_list_remake(t_list **tab, t_list **a, t_list **b, int len)
 {
 	t_list		*tmp;
 	int			i;
 
-	a = tab[0];
-	tmp = a;
+	a[0] = tab[0];
+	tmp = a[0];
 	i = 0;
 	while (++i < len)
 	{
@@ -69,7 +69,7 @@ static void		ft_list_remake(t_list **tab, t_list *a, t_list *b, int len)
 		tmp = tmp->next;
 	}
 	tmp->next = NULL;
-	b = NULL;
+	b[0] = NULL;
 }
 
 static void		ft_quicksort(t_list a[], t_list b[], t_list **output, t_byte *o)
@@ -83,9 +83,9 @@ static void		ft_quicksort(t_list a[], t_list b[], t_list **output, t_byte *o)
 	if (!ft_list_is_sort(a))
 		ft_sort_a(a, b, output);
 	ft_optimize(output);
-	ft_list_remake(tab, a, b, len);
+	ft_list_remake(tab, &a, &b, len);
 	ft_replace_rra(output, a, b);
-	ft_list_remake(tab, a, b, len);
+	ft_list_remake(tab, &a, &b, len);
 	ft_replace_rrb(output, a, b);
 	ft_push_swap_display(*output, o);
 	while (--len >= 0)
