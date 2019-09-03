@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/01 17:17:16 by manki            ###   ########.fr        #
+#    Updated: 2019/09/03 14:25:48 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,48 +74,48 @@ _END=$ \033[0m
 
 .PHONY: all clean
 
-all: $(LIB) $(CHECKER_NAME) $(PUSH_SWAP_NAME)
+all: $(LIB) $(BOTH_OBJ_PATH) $(CHECKER_NAME) $(PUSH_SWAP_NAME)
+
+$(BOTH_OBJ_PATH):
+	mkdir $@
 
 $(C_OBJ_PATH)/%.o: $(C_SRC_PATH)/%.c
-	@mkdir $(C_OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 $(PS_OBJ_PATH)/%.o: $(PS_SRC_PATH)/%.c
-	@mkdir $(PS_OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 $(BOTH_OBJ_PATH)/%.o: $(BOTH_SRC_PATH)/%.c
-	@mkdir $(BOTH_OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 $(CHECKER_NAME): $(LIB) $(C_OBJ) $(BOTH_OBJ)
-	@$(CC) $(FLAGS) $(CHECKER_SRC) $(BOTH_SRC) $(LIB) -o $(CHECKER_NAME)
-	@echo "✅$(_GREEN)checker created 😎$(_END)"
+	$(CC) $(FLAGS) $(CHECKER_SRC) $(BOTH_SRC) $(LIB) -o $(CHECKER_NAME)
+	echo "✅  $(_GREEN)checker created 😎 $(_END)"
 
 $(PUSH_SWAP_NAME): $(LIB) $(PS_OBJ) $(BOTH_OBJ)
-	@$(CC) $(FLAGS) $(PUSH_SWAP_SRC) $(BOTH_SRC) $(LIB) -o $(PUSH_SWAP_NAME)
-	@echo "✅$(_GREEN)push_swap created 😎$(_END)"
+	$(CC) $(FLAGS) $(PUSH_SWAP_SRC) $(BOTH_SRC) $(LIB) -o $(PUSH_SWAP_NAME)
+	echo "✅  $(_GREEN)push_swap created 😎 $(_END)"
 
-$(LIB):
-	@make -C libft all
-	@echo "✅$(_GREEN)mylibft.a created 😎$(_END)"
+$(LIB): FORCE
+	make -C libft all
+
+FORCE:
 
 clean:
-	@make -C libft clean
-	@/bin/rm -f $(C_OBJ) $(PS_OBJ) $(BOTH_OBJ)
-	@echo "❌$(_RED) OBJECT FILES DELETED 😱$(_END)"
+	make -C libft clean
+	/bin/rm -rf $(C_OBJ_PATH)
+	echo "❌  $(_RED)OBJECT FILES DELETED 😱 $(_END)"
 
 fclean: clean
-	@make -C libft fclean
-	@echo "❌$(_RED) $(LIB) DELETED 😱$(_END)"
-	@/bin/rm -f $(CHECKER_NAME)
-	@echo "❌$(_RED) $(CHECKER_NAME) DELETED 😱$(_END)"
-	@/bin/rm -f $(PUSH_SWAP_NAME)
-	@echo "❌$(_RED) $(PUSH_SWAP_NAME) DELETED 😱$(_END)"
-	@/bin/rm -rf $(C_OBJ_PATH)
-	@echo "❌$(_RED) $(C_OBJ_PATH) DELETED 😱$(_END)"
+	make -C libft fclean
+	/bin/rm -f $(CHECKER_NAME)
+	echo "❌  $(_RED)$(CHECKER_NAME) DELETED 😱 $(_END)"
+	/bin/rm -f $(PUSH_SWAP_NAME)
+	echo "❌  $(_RED)$(PUSH_SWAP_NAME) DELETED 😱 $(_END)"
 
 re: fclean all
 
 norme:
-	@norminette $(INC_PATH) $(C_SRC_PATH) $(PS_SRC_PATH) $(BOTH_SRC_PATH)
+	norminette $(INC_PATH) $(C_SRC_PATH) $(PS_SRC_PATH) $(BOTH_SRC_PATH)
+
+.SILENT:

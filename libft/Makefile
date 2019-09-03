@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/16 14:37:29 by manki             #+#    #+#              #
-#    Updated: 2019/08/14 17:39:55 by manki            ###   ########.fr        #
+#    Updated: 2019/09/03 14:25:27 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,32 +94,36 @@ _END=			$ \033[0m
 
 .PHONY: all clean fclean re
 
-all: $(NAME)
+all: $(OBJ_PATH) $(NAME)
+
+$(OBJ_PATH):
+	mkdir $@
 
 $(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
-		@mkdir $(OBJLIB_PATH) 2> /dev/null || true
-		@$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 $(OBJLIBFT_PATH)/%.o: $(LIBFT_PATH)/%.c
-		@mkdir $(OBJLIBFT_PATH) 2> /dev/null || true
-		@$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-		@mkdir $(OBJ_PATH) 2> /dev/null || true
-		@$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ) $(OBJLIB) $(OBJLIBFT)
-		@ar rc $(NAME) $(OBJ) $(OBJLIB) $(OBJLIBFT)
-		@ranlib $(NAME)
+		ar rc $(NAME) $(OBJ) $(OBJLIB) $(OBJLIBFT)
+		ranlib $(NAME)
+		echo "✅  $(_GREEN)mylibft.a created 😎 $(_END)"
 
 clean:
-		@/bin/rm -f $(OBJ) $(OBJLIB) $(OBJLIBFT)
+		/bin/rm -f $(OBJ) $(OBJLIB) $(OBJLIBFT)
 
 fclean: clean
-		@/bin/rm -rf $(OBJ_PATH)
-		@/bin/rm -f $(NAME)
+		/bin/rm -rf $(OBJ_PATH)
+		/bin/rm -f $(NAME)
+		echo "❌  $(_RED)$(NAME) deleted 😱 $(_END)"
 
 re: fclean all
 
 norme:
 		norminette $(SRC) $(LIB) $(INC)
+
+.SILENT:
