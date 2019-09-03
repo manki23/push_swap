@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/16 14:37:29 by manki             #+#    #+#              #
-#    Updated: 2019/09/03 14:25:27 by manki            ###   ########.fr        #
+#    Updated: 2019/09/03 15:50:53 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@
 
 NAME = mylibft.a
 
-SRC_PATH = ./src
-LIB_PATH = ./lib
+SRC_PATH = ./src/
+LIB_PATH = ./lib/
 LIBFT_PATH = ./libft/
-INC_PATH = ./inc
-OBJ_PATH = ./obj
-OBJLIB_PATH = ./obj
-OBJLIBFT_PATH = ./obj
+INC_PATH = ./inc/
+OBJ_PATH = ./obj/
+OBJLIB_PATH = ./obj/
+OBJLIBFT_PATH = ./obj/
 
 SRC_NAME = ft_printf.c ft_analysis.c ft_basics.c ft_putdot.c \
 		   ft_fill_di_output.c ft_fill_uoxx_output.c ft_float3.c \
@@ -59,7 +59,7 @@ LIBFT_NAME = ft_abs.c ft_memcmp.c ft_striter.c ft_bzero.c ft_memmove.c \
 			 ft_memchr.c ft_strequ.c ft_error.c ft_split_whitespaces.c \
 			 ft_list_print.c
 
-INC_NAME = ft_printf.h
+INC_NAME = mylibft.h
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -67,16 +67,18 @@ OBJLIB_NAME = $(LIB_NAME:.c=.o)
 
 OBJLIBFT_NAME = $(LIBFT_NAME:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
-INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
-LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
-LIBFT = $(addprefix $(LIBFT_PATH)/,$(LIBFT_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
-OBJLIB = $(addprefix $(OBJLIB_PATH)/,$(OBJLIB_NAME))
-OBJLIBFT = $(addprefix $(OBJLIBFT_PATH)/,$(OBJLIBFT_NAME))
+INC = $(addprefix $(INC_PATH), $(INC_NAME))
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+INC = $(addprefix $(INC_PATH), $(INC_NAME))
+LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
+LIBFT = $(addprefix $(LIBFT_PATH),$(LIBFT_NAME))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+OBJLIB = $(addprefix $(OBJLIB_PATH),$(OBJLIB_NAME))
+OBJLIBFT = $(addprefix $(OBJLIBFT_PATH),$(OBJLIBFT_NAME))
 
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
+
 
 							#############
 							#	COLORS	#
@@ -92,6 +94,8 @@ _CYAN=			$ \033[36m
 _WHITE=			$ \033[37m
 _END=			$ \033[0m
 
+#-include	./inc/mylibft.h
+
 .PHONY: all clean fclean re
 
 all: $(OBJ_PATH) $(NAME)
@@ -99,16 +103,16 @@ all: $(OBJ_PATH) $(NAME)
 $(OBJ_PATH):
 	mkdir $@
 
-$(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
+$(OBJLIB_PATH)%.o: $(LIB_PATH)%.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
-$(OBJLIBFT_PATH)/%.o: $(LIBFT_PATH)/%.c
+$(OBJLIBFT_PATH)%.o: $(LIBFT_PATH)%.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
-$(NAME): $(OBJ) $(OBJLIB) $(OBJLIBFT)
+$(NAME): $(INC) $(OBJ) $(OBJLIB) $(OBJLIBFT)
 		ar rc $(NAME) $(OBJ) $(OBJLIB) $(OBJLIBFT)
 		ranlib $(NAME)
 		echo "✅  $(_GREEN)mylibft.a created 😎 $(_END)"

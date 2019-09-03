@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/03 14:25:48 by manki            ###   ########.fr        #
+#    Updated: 2019/09/03 15:49:20 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,14 @@
 CHECKER_NAME = checker
 PUSH_SWAP_NAME = push_swap
 
-C_SRC_PATH = ./c_src
-PS_SRC_PATH = ./ps_src
-BOTH_SRC_PATH = ./src_both
-INC_PATH = ./inc
-C_OBJ_PATH = ./obj
-PS_OBJ_PATH = ./obj
-BOTH_OBJ_PATH = ./obj
-LIB_PATH = ./libft
+C_SRC_PATH = ./c_src/
+PS_SRC_PATH = ./ps_src/
+BOTH_SRC_PATH = ./src_both/
+INC_PATH = ./inc/
+C_OBJ_PATH = ./obj/
+PS_OBJ_PATH = ./obj/
+BOTH_OBJ_PATH = ./obj/
+LIB_PATH = ./libft/
 
 CHECKER_SRC_NAME = checker.c
 
@@ -43,16 +43,18 @@ C_OBJ_NAME = $(CHECKER_SRC_NAME:.c=.o)
 PS_OBJ_NAME = $(PUSH_SWAP_SRC_NAME:.c=.o)
 BOTH_OBJ_NAME = $(BOTH_SRC_NAME:.c=.o)
 
-CHECKER_SRC = $(addprefix $(C_SRC_PATH)/, $(CHECKER_SRC_NAME))
-PUSH_SWAP_SRC = $(addprefix $(PS_SRC_PATH)/, $(PUSH_SWAP_SRC_NAME))
-BOTH_SRC = $(addprefix $(BOTH_SRC_PATH)/, $(BOTH_SRC_NAME))
-C_OBJ = $(addprefix $(C_OBJ_PATH)/, $(C_OBJ_NAME))
-PS_OBJ = $(addprefix $(PS_OBJ_PATH)/, $(PS_OBJ_NAME))
-BOTH_OBJ = $(addprefix $(BOTH_OBJ_PATH)/, $(BOTH_OBJ_NAME))
-LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
+INC = $(addprefix $(INC_PATH), $(INC_NAME))
+CHECKER_SRC = $(addprefix $(C_SRC_PATH), $(CHECKER_SRC_NAME))
+PUSH_SWAP_SRC = $(addprefix $(PS_SRC_PATH), $(PUSH_SWAP_SRC_NAME))
+BOTH_SRC = $(addprefix $(BOTH_SRC_PATH), $(BOTH_SRC_NAME))
+C_OBJ = $(addprefix $(C_OBJ_PATH), $(C_OBJ_NAME))
+PS_OBJ = $(addprefix $(PS_OBJ_PATH), $(PS_OBJ_NAME))
+BOTH_OBJ = $(addprefix $(BOTH_OBJ_PATH), $(BOTH_OBJ_NAME))
+LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
+
 
 ##################
 ##    COLORS    ##
@@ -79,20 +81,20 @@ all: $(LIB) $(BOTH_OBJ_PATH) $(CHECKER_NAME) $(PUSH_SWAP_NAME)
 $(BOTH_OBJ_PATH):
 	mkdir $@
 
-$(C_OBJ_PATH)/%.o: $(C_SRC_PATH)/%.c
+$(C_OBJ_PATH)%.o: $(C_SRC_PATH)%.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
-$(PS_OBJ_PATH)/%.o: $(PS_SRC_PATH)/%.c
+$(PS_OBJ_PATH)%.o: $(PS_SRC_PATH)%.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
-$(BOTH_OBJ_PATH)/%.o: $(BOTH_SRC_PATH)/%.c
+$(BOTH_OBJ_PATH)%.o: $(BOTH_SRC_PATH)%.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
-$(CHECKER_NAME): $(LIB) $(C_OBJ) $(BOTH_OBJ)
+$(CHECKER_NAME): $(LIB) $(INC) $(C_OBJ) $(BOTH_OBJ)
 	$(CC) $(FLAGS) $(CHECKER_SRC) $(BOTH_SRC) $(LIB) -o $(CHECKER_NAME)
 	echo "✅  $(_GREEN)checker created 😎 $(_END)"
 
-$(PUSH_SWAP_NAME): $(LIB) $(PS_OBJ) $(BOTH_OBJ)
+$(PUSH_SWAP_NAME): $(LIB) $(INC) $(PS_OBJ) $(BOTH_OBJ)
 	$(CC) $(FLAGS) $(PUSH_SWAP_SRC) $(BOTH_SRC) $(LIB) -o $(PUSH_SWAP_NAME)
 	echo "✅  $(_GREEN)push_swap created 😎 $(_END)"
 
